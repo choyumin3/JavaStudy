@@ -18,6 +18,7 @@ public class LoopWhile {
 
             System.out.println(i);
             i++;
+
         }
 
         int j = 1;

@@ -221,13 +221,13 @@ public class LoopFor {
 
         for (int i = 0; i < 5; i++) {
 
-            String blank = "";
-            for (int k = 0; k < 4-1; k++) {
-                blank += "  ";
+            String blank = " ";
+            for (int k = 0; k < 4-i; k++) {
+                blank += " ";
             }
-            String stars = "";
+            String stars = " ";
             for (int k = 0; k < (i*2)+1; k++){
-                stars+= "*";
+                stars += "*";
             }
             System.out.println(blank + stars);
 

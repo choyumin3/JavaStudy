@@ -1,4 +1,6 @@
-package ch05_controll;
+package ch06_method;
+
+import java.util.Scanner;
 
 public class MethodMain {
     public static void main(String[] args) {
@@ -111,23 +113,150 @@ public class MethodMain {
 
         makeCard("유민", 90, 87, 79);
 
+        System.out.println("\n=========================================\n");
+
+        playPokemon();
+
+
+        System.out.println("\n=========================================\n");
+
+        // 팩토리얼을 메소드화
+        // [Ctrl + Shift + F]
+
+        // LoopWhile 에서 포켓몬 했던거를 메소드로 묶어서 실행
+
+
         // 함수명:myAbs
         // 파라미터타입: int
         // 리턴타입 : int
         // 파라미터로 음수가 들어오면 양수로 바꿔서 리턴
         // 양수가 들어오면 양수 그대로 리턴
 
+        // 재귀함수
+        // 메소드 내에서 해당 메소드를 실행하는 케이스
+
+        // 콘솔창에 1부터 n까지 출력하는 메소드
+        printNum(10);
+
+        //재귀 함수 방식
+        recPrintNum(10);
+
+        System.out.println(recFactorial(5));
+
     }//main 메소드 끝
 
+    public static void playPokemon() {
+        Scanner scan = new Scanner(System.in); // importclass??
+        // 포켓몬스터
+        int hp = 100;
+        // 이 while문의 이름이 outer가 됨
+        outer:
+        while (true) {
+            System.out.println("야생의 피카츄를 만났습니다.");
+            System.out.println("행동을 선택해주세요");
+            System.out.println("1. 공격 | 2. 도망");
+            System.out.println(">>> ");
 
-    public static void makeCard(String name, int kor, int eng, int math){
-        System.out.println("이름: "+ name);
-        System.out.println("국어: "+ kor);
-        System.out.println("영어: "+ eng);
-        System.out.println("수학: "+ math);
+            int command = Integer.parseInt(scan.nextLine());
 
-       double avg  = (double)(kor + eng + math) / 3;
-       // avg를 소수 셋째자리에서 반올림하여 소수 둘째자리로 만들기
+            if (command == 1) {
+                while (true) {
+                    System.out.println("공격 방법 선택");
+                    System.out.println("1. 몸통박치기 | 2. 하이드로펌프 | 3. 취소");
+                    System.out.println(">>> ");
+
+                    int attack = Integer.parseInt(scan.nextLine());
+
+                    if (attack == 1) {
+                        System.out.println("몸통박치기 시전");
+                        hp -= 20;
+                    } else if (attack == 2) {
+                        System.out.println("하이드로 펌프");
+                        hp -= 40;
+                    } else if (attack == 3) {
+                        // 취소
+                        // 가까운 반복문 1개를 즉시 종료
+                        // 내부 while문만 종료된다.
+                        break;
+                    }
+
+                    if (hp <= 0) {
+                        System.out.println("피카츄를 잡았다~!!");
+                        // 외부 while문을 종료 시키려면??
+
+                        // system.exit(0); // 프로그램 종료
+                        // 외부 while문에 네임태그 설정
+
+                        //break outer; // 해당 이름을 가진 while문 종료
+                        // 리턴타입이 void 이더라도 return은 사용이 가능하다.
+                        // 메소드 내에서 return이 실행되면 해당 메소드는 즉시 종료된다.
+
+
+                    }
+                    return;
+                }
+
+            } else if (command == 2) {
+                System.out.println("도망갔습니다");
+                break;
+            } else {
+                System.out.println("잘못 입력하셨습니다.");
+            }
+        }
+    }
+
+    public static long recFactorial(int num) {
+
+        return num * recFactorial(num - 1);
+        // return 5 * refactorial(4)
+        // return 5 * 4 * refactorial(3)
+        // return 5 * 4 * 3 * refactorial(2)
+        // return 5 * 4 * 3 * 2 * refactorial(1)
+
+
+    }
+
+
+    public static void recPrintNum(int num) {
+        System.out.println(num); // 10
+        recPrintNum(num - 1); // 파라미에
+
+        // 자기자신을 호출(= 재귀함수)
+        // 무한 반복 실행을 주의
+        if (num == 1) {
+            return; // 메소드 즉시 종료
+
+
+        }
+    }
+
+    public static void printNum(int num) {
+        for (int i = 1; i <= num; i++) {
+            System.out.println(i);
+        }
+    }
+
+
+    public static long factorial(int n) {
+        long num = 1;
+        for (int i = 1; i <= n; i++) {
+            num *= i;
+
+        }
+        return num;
+
+
+    }
+
+
+    public static void makeCard(String name, int kor, int eng, int math) {
+        System.out.println("이름: " + name);
+        System.out.println("국어: " + kor);
+        System.out.println("영어: " + eng);
+        System.out.println("수학: " + math);
+
+        double avg = (double) (kor + eng + math) / 3;
+        // avg를 소수 셋째자리에서 반올림하여 소수 둘째자리로 만들기
         // Math.round() 는 소수 첫째자리에서 반올림한 정수 값을 리턴
         // 우리만의 반올림 메소트 myRound()를 만들어보자!!
 
@@ -135,16 +264,18 @@ public class MethodMain {
 
         System.out.println("평균: " + avg);
 
-       String deg = "C";
-       if(avg >=90) {
-           deg = "A";
-       }else if(avg >=80) {
-           deg = "B";
-       }
+        String deg = "C";
+        if (avg >= 90) {
+            deg = "A";
+        } else if (avg >= 80) {
+            deg = "B";
+        }
         System.out.println("등급 " + deg);
 
 
-    } public static void print(String word){
+    }
+
+    public static void print(String word) {
         System.out.println(word);
 
 
@@ -152,11 +283,12 @@ public class MethodMain {
 
     /**
      * 입력한 소수를 소수 n번째 자리로 반올림하여 리턴해주는 함수
+     *
      * @param num 반올림 하고자 하는 소수
-     * @param n 소수 n번째 자리를 지정하는 정수
+     * @param n   소수 n번째 자리를 지정하는 정수
      * @return 반올림된 소수 리턴
      */
-    public  static double myRound(double num, int n){
+    public static double myRound(double num, int n) {
         // Math.round() 은 소수 첫째자리에서 반올림한 정수 리턴
         // 3.141592
         // Math.round(3.141592) => 3 리턴
@@ -181,15 +313,15 @@ public class MethodMain {
 
         int one = 1;
         // one에 10을 n번 곱함
-        for(int i = 0; i <n; i++){
+        for (int i = 0; i < n; i++) {
             one *= 10;
         }
 
-        return (double)Math.round(num * one) / one;
+        return (double) Math.round(num * one) / one;
     }
 
-    public static int myAbs(int num){
-        if(num < 0 ){
+    public static int myAbs(int num) {
+        if (num < 0) {
             // num가 음수일때만 실행
             // 음수인 num을 양수로 바꿔주기
             // 음수에 -1을 곱하면 양수가 된다.
@@ -215,24 +347,25 @@ public class MethodMain {
         System.out.println(word);
 
     }
-public static void printSum(int startNumber,int endNumber){
+
+    public static void printSum(int startNumber, int endNumber) {
         int sum = 0;
-        for(int i = startNumber ; i <= endNumber ; i++){
+        for (int i = startNumber; i <= endNumber; i++) {
             sum += i;
 
         }
-    System.out.println(startNumber+ "부터 " + endNumber+ " 까지 " +  sum);
-}
-public  static int returnSum(int startNumber, int endNumber){
-    int sum = 0;
-    for(int i = startNumber ; i <= endNumber ; i++){
-        sum += i;
-
+        System.out.println(startNumber + "부터 " + endNumber + " 까지 " + sum);
     }
-        // sum 값을 리턴
-    return sum;
-}
 
+    public static int returnSum(int startNumber, int endNumber) {
+        int sum = 0;
+        for (int i = startNumber; i <= endNumber; i++) {
+            sum += i;
+
+        }
+        // sum 값을 리턴
+        return sum;
+    }
 
 
 }

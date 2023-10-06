@@ -20,7 +20,7 @@ public class Submit04 {
             if(inputText.equals("q") || inputText.equals("exit")){
                 System.out.println("프로그램을 종료합니다.");
                 break;
-            } else {
+            }
                 int floor = Integer.parseInt(inputText);
 
 
@@ -40,7 +40,7 @@ public class Submit04 {
                         elevatorB = floor;
                     }
                 }
-            }
+
 
 
 
