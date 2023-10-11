@@ -60,7 +60,7 @@ public class ArrayMain {
 
         // 한번에 배열 내 요소들을 확인
         // for문을 이용한 배열 순회
-        for(int i = 0; i < seoyugi.length; i++){
+        for (int i = 0; i < seoyugi.length; i++) {
             // i는 0, 1, 2, 3 => seoyugi의 인덱스로 사용 가능
             System.out.println(seoyugi[i]);
         }
@@ -75,16 +75,16 @@ public class ArrayMain {
         // 배열의 장점
         // for문을 이용하여 배열에 담긴 모든 요소들을 한번에 처리할 수 있다.
         // 모든 값 앞에 서유기를 붙여주고자 한다면
-        for(int i = 0; i < seoyugi.length; i++){
+        for (int i = 0; i < seoyugi.length; i++) {
             seoyugi[i] = "서유기 " + seoyugi[i];
         }
         printArray(seoyugi);
 
         // 배열 내 특정 요소에 접근하여 처리 할 수 있다.
         // 서유기 오공 -> 드래곤볼 오공
-        for(int i = 0; i < seoyugi.length; i++){
+        for (int i = 0; i < seoyugi.length; i++) {
             //seoyugi[i].contains("오공");
-            if(seoyugi[i].indexOf("오공") != -1){ // 있으면 값 리턴 없으면 -1
+            if (seoyugi[i].indexOf("오공") != -1) { // 있으면 값 리턴 없으면 -1
                 // 이때의 seoyugi[i]는 "서유기 오공" 이다
                 seoyugi[i] = seoyugi[i].replace("서유기", "드래곤볼");
             }
@@ -109,8 +109,8 @@ public class ArrayMain {
         // 로또 번호는 1~45 사이의 랜덤 정수
         // (int)(Math.random() * 45) : 0~44 사이의 정수
         // (int)(Math.random() * 45) + 1 : 0~45 사이의 정수
-        for(int i = 0; i < intArray.length; i++){
-            intArray[i] = (int)(Math.random() * 45) + 1;
+        for (int i = 0; i < intArray.length; i++) {
+            intArray[i] = (int) (Math.random() * 45) + 1;
         }
         printArray(intArray);
 
@@ -146,7 +146,7 @@ public class ArrayMain {
         myInfo = "정찬웅 , 010-7398-7332,akow283@gmail.com";
         String[] infoArr = myInfo.split(",");
         // 각각의 요소에 좌우 공백 제거
-        for(int i = 0; i < infoArr.length; i++){
+        for (int i = 0; i < infoArr.length; i++) {
             infoArr[i] = infoArr[i].trim();
         }
         printArray(infoArr);
@@ -227,7 +227,7 @@ public class ArrayMain {
 
         // clone 없이 복제
         String[] synSeoyugi = new String[seoyugi.length];
-        for(int i = 0; i < seoyugi.length; i++){
+        for (int i = 0; i < seoyugi.length; i++) {
             synSeoyugi[i] = seoyugi[i];
         }
 
@@ -296,24 +296,72 @@ public class ArrayMain {
         // 1. numArray의 모든 요소에 -1을 곱함 (2, 40) -> (-2, -40)
         // 2. Arrays.sort(numArray) 적용 (-2, -40) -> (-40, -2)
         // 3. numArray의 모든 요소에 -1을 곱함 (-40, -2) -> (40, 2)
-        for(int i = 0; i < numArray.length; i++){
+        for (int i = 0; i < numArray.length; i++) {
             numArray[i] *= -1;
         }
         printArray(numArray);
 
         Arrays.sort(numArray);
         printArray(numArray);
-        for(int i = 0; i < numArray.length; i++){
+        for (int i = 0; i < numArray.length; i++) {
             numArray[i] *= -1;
         }
         printArray(numArray);
 
 
+        // 버블정렬 (알고리즘)
+        int[] intArr = {3, 5, 8, 2, 4, 1};
 
+        for (int k = 0; k < intArr.length - 1; k++) {
 
-        // 정렬 (알고리즘)
+            for (int i = 0; i < intArr.length - 1; i++) {
+                // 왼쪽이 오른쪽보다 큰지 비교렬 = 오름차순
+                // 왼쪽이 오른쪽보다 작은지 비교 = 내림차순
+                if (intArr[i] > intArr[i + 1]) {
+                    // 자리바꾼다.
+                    int tmp = intArr[i];
+                    intArr[i] = intArr[i + 1];
+                    intArr[i + 1] = tmp;
 
+                }
 
+            }
+
+        }
+
+        printArray(intArr); // 오름차순 정렬
+
+        System.out.println("\n======================================\n");
+
+        // 다차원 배열
+        // 일차원 배열
+        int[] oneDirArr = {1, 2, 3};
+        // 이차원 배열
+        int[][] twoDirArr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        // 1 2 3
+        // 4 5 6
+        // 7 8 9
+
+        // 2행 {4 5 6} 꺼내기
+        printArray(twoDirArr[1]);
+
+        // 3행 2열{8}
+        System.out.println(twoDirArr[2][1]);
+
+        // 3차원 배열
+        int[][][] threeDirArr = {{{1, 2,  3 }, {4,   5,  6}, {7,  8,  9   }  },
+                                {{10, 11, 12}, {13, 14, 15}, {16, 17, 18  }  },
+                                {{19, 20, 21}, {22, 23, 24}, {25, 26, 27} }  };
+
+        System.out.println(threeDirArr[2][0][0]);
+
+        // 로또방 가서 자동 5천원 구매
+        // 로또 5줄짜리 나옴
+        // 7 12 24 33 32 44
+        // 17 22 24 34 37 41
+        // 9 13 21 34 34 37
+        // 7 12 24 33 32 44
+        // 7 12 24 33 32 44
 
 
 
@@ -321,46 +369,45 @@ public class ArrayMain {
 
     } // main 끝
 
-    public static void swap(int idxA, int idxB){
+    public static void swap(int idxA, int idxB) {
         int temp = idxA;
         idxA = idxB;
         idxB = temp;
     }
 
-    public static void swap(int[] intArray, int idxA, int idxB){
+    public static void swap(int[] intArray, int idxA, int idxB) {
         int temp = intArray[idxA];
         intArray[idxA] = intArray[idxB];
         intArray[idxB] = temp;
 
     }
 
-    public static void printArray(int[] intArray){
-        for(int i = 0; i < intArray.length; i++){
+    public static void printArray(int[] intArray) {
+        for (int i = 0; i < intArray.length; i++) {
             // 만약에 i가 맨 마지막 인덱스에 해당한다면
             // , 를 같이 출력하지 않는다.
             // i 는 strArray.length 미만인 조건이므로
             // 마지막 반복문의 i는 strArray.lenth - 1 과 같다.
-            if (i == intArray.length-1){
+            if (i == intArray.length - 1) {
                 System.out.println(intArray[i]);
-            }else{
+            } else {
                 System.out.print(intArray[i] + ", ");
             }
         }
     }
-    public static void printArray(String[] strArray){
-        for(int i = 0; i < strArray.length; i++){
+
+    public static void printArray(String[] strArray) {
+        for (int i = 0; i < strArray.length; i++) {
             // 만약에 i가 맨 마지막 인덱스에 해당한다면
             // , 를 같이 출력하지 않는다.
             // i 는 strArray.length 미만인 조건이므로
             // 마지막 반복문의 i는 strArray.lenth - 1 과 같다.
-            if (i == strArray.length-1){
+            if (i == strArray.length - 1) {
                 System.out.println(strArray[i]);
-            }else{
+            } else {
                 System.out.print(strArray[i] + ", ");
             }
         }
-
-
 
 
     }
