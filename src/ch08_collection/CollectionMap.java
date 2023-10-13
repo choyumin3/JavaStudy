@@ -59,7 +59,7 @@ public class CollectionMap {
         System.out.println(stuMap.get("둘째") != null); // 위와 같음
 
         // .containsValue(값)
-        // Map 내부 요소 중에 괄호 안 값과 같ㅇ느 Value가 존재하면 true, 없으면 false
+        // Map 내부 요소 중에 괄호 안 값과 같은 Value가 존재하면 true, 없으면 false
         System.out.println(stuMap.containsValue("성복"));
 
         // .remove(key)
